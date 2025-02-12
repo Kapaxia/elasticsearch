@@ -1,5 +1,5 @@
 # Default Elasticsearch version to use
-ARG ELASTICSEARCH_VERSION=8.15.0
+ARG ELASTICSEARCH_VERSION=8.17.2
 
 # Use the Elasticsearch image with the specified version
 FROM elasticsearch:${ELASTICSEARCH_VERSION}
