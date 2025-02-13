@@ -20,8 +20,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Switch back to the kibana user as kibana can only run as non-root
 USER 1000:0
 
-RUN sudo chown -R 1000 /kidata
-
 ENTRYPOINT ["/bin/tini", "--"]
 
 
