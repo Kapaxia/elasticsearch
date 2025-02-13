@@ -5,7 +5,7 @@ ARG KIBANA_VERSION=8.17.2
 FROM kibana:${KIBANA_VERSION}
 
 # Copy in our custom config file that disables the use of nmap
-# COPY kibana.yml /usr/share/kibana/config/kibana.yml
+COPY kibana.yml /usr/share/kibana/config/kibana.yml
 
 # Copy in the new entrypoint and set the execution bit
 COPY --chmod=755 entrypoint-new.sh /usr/local/bin/entrypoint-new.sh
