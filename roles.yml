@@ -1,5 +1,0 @@
-# roles.yml
-
-anonymous_role:
-  cluster:
-    - monitor # This includes cluster health
