@@ -11,4 +11,4 @@ if [ -n "$KIBANA_DEFAULT_APP" ]; then
 fi
 
 # Execute the original entrypoint
-exec /usr/local/bin/docker-entrypoint.sh kibana
+exec kibana /bin/bash
