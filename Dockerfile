@@ -7,9 +7,6 @@ FROM kibana:${KIBANA_VERSION}
 # Copy in our custom config file that disables the use of nmap
 COPY kibana.yml /usr/share/kibana/config/kibana.yml
 
-# Copy in the new entrypoint and set the execution bit
-COPY --chmod=755 entrypoint-new.sh /usr/local/bin/entrypoint-new.sh
-
 # Switch to the root user
 USER 0
 
@@ -23,5 +20,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Switch back to the kibana user as kibana can only run as non-root
 USER 1000:0
 
-# Run our new entrypoint
-ENTRYPOINT ["/usr/local/bin/entrypoint-new.sh"]
+ENTRYPOINT ["/bin/tini", "--"]
+
+
+CMD ["/usr/local/bin/kibana-docker"]

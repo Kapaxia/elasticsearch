@@ -1,2 +1,3 @@
 node.name: "kibana"
+path.data: "/kidata"
 xpack.security.enabled: "true"
