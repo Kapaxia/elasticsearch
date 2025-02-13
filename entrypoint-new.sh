@@ -7,4 +7,4 @@ set -euo pipefail
 sudo chown -R 1000 /esdata
 
 # exec the original process that the image would have started
-exec /bin/tini -- /usr/local/bin/docker-entrypoint.sh eswrapper
+exec /bin/tini -- /usr/local/bin/kibana-docker
