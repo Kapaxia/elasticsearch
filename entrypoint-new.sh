@@ -1,10 +1,15 @@
 #!/bin/sh
-
-# Exit the script as soon as any command fails
 set -euo pipefail
 
-# chown the mount to allow the elasticsearch user read and write access
-sudo chown -R 1000 /esdata
+# Esperar a Elasticsearch
+until curl -sf http://elasticsearch:9200; do
+  sleep 5
+done
 
-# exec the original process that the image would have started
-exec /bin/tini -- /usr/local/bin/kibana-docker
+# Configuraciones adicionales (ejemplo)
+if [ -n "$KIBANA_DEFAULT_APP" ]; then
+  sed -i "s|^#kibana.defaultAppId:.*|kibana.defaultAppId: $KIBANA_DEFAULT_APP|" /usr/share/kibana/config/kibana.yml
+fi
+
+# Ejecutar entrypoint original
+exec /usr/local/bin/docker-entrypoint.sh kibana
